@@ -1,0 +1,61 @@
+{% include 'promotions/navbar.html' %}
+
+<body>
+    <div class="container-fluid">
+        <!-- Search Form -->
+        <form method="GET" action="" class="mb-4">
+            <!-- Vos champs de recherche ici -->
+        </form>
+
+        <h1>Liste des Clients</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Code Client</th>
+                    <th>Code Zone</th>
+                    <th>Description</th>
+                    <th>Description Alternative</th>
+                    <th>Code Terme de Paiement</th>
+                    <th>Email</th>
+                    <th>Adresse</th>
+                    <th>Adresse Alternative</th>
+                    <th>Personne de Contact</th>
+                    <th>Numéro de Téléphone</th>
+                    <th>Code Barre</th>
+                    <th>Statut du Client</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for client in clients %}
+                <tr>
+                    <td>{{ client.Client_Code }}</td>
+                    <td>{{ client.Area_Code }}</td>
+                    <td>{{ client.Client_Description }}</td>
+                    <td>{{ client.Client_Alt_Description }}</td>
+                    <td>{{ client.Payment_Term_Code }}</td>
+                    <td>{{ client.Email }}</td>
+                    <td>{{ client.Address }}</td>
+                    <td>{{ client.Alt_Address }}</td>
+                    <td>{{ client.Contact_Person }}</td>
+                    <td>{{ client.Phone_Number }}</td>
+                    <td>{{ client.Barcode }}</td>
+                    <td>{{ client.Client_Status_ID }}</td>
+                    <td>
+                        <a href="{% url 'edit_client' client.Client_Code %}" class="btn btn-warning btn-sm">Modifier</a>
+                        <a href="{% url 'delete_client' client.Client_Code %}" class="btn btn-danger">Supprimer</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <a href="{% url 'Clients' %}" class="btn btn-primary">Ajouter</a>
+        <a href="{% url 'home' %}" class="btn btn-primary">Retour à l'accueil</a>
+        <div class="float-right">
+            <a class="btn btn-secondary" href="{% url 'home_client_status' %}">Afficher les status clients</a>
+        </div>    
+    </div>
+
+</body>
+</html>
